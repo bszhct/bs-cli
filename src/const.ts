@@ -15,11 +15,14 @@ export const TEMPLATES = [
   {
     name: '脚手架(React + Mobx)',
     value: 'github:bszhct/template-react#master',
-    a: '11',
   },
   {
     name: '脚手架(Node Cli)',
     value: 'github:bszhct/template-node#master',
+  },
+  {
+    name: '组件(Vue)',
+    value: 'github:bszhct/template-vue-component#master',
   },
 ]
 // 需要动态写入的 package.json 信息

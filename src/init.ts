@@ -33,7 +33,7 @@ export default () => {
           const pkgPath = `${root}/package.json`
           fs.writeFileSync(
             pkgPath, 
-            JSON.stringify({...require(pkgPath), ...pkg, name: projectName}, null, 2)
+            JSON.stringify({...require(pkgPath), ...pkg, name: `@bszhct/${projectName}`}, null, 2)
           )
           // 如果是 template-component 模板, 进行 component-name 的变量替换
           if (project.type.includes('template-component')) {
