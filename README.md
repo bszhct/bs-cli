@@ -41,8 +41,6 @@ bs server dist,nodule_modules 9999
 
 ```
 
----
-
 
 ## 反馈
 [传送门](https://github.com/bszhct/cli/issues)
