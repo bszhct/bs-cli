@@ -1,10 +1,10 @@
 {
   "name": "@bszhct/cli",
-  "version": "0.0.2",
-  "description": "骆驼自己的前端工程化命令行工具",
+  "version": "0.1.0",
+  "description": "骆驼的哈乐园",
   "scripts": {
     "dev": "tsc --watch",
-    "tsc": "tsc",
+    "build": "tsc",
     "eslint": "eslint . --ext .ts,.tsx",
     "es:fix": "eslint . --ext .ts,.tsx --fix"
   },

@@ -24,6 +24,10 @@ export const TEMPLATES = [
     name: '组件(Vue)',
     value: 'github:bszhct/template-vue-component#master',
   },
+  {
+    name: '组件库(Vue)',
+    value: 'github:bszhct/template-vue-kit#master',
+  },
 ]
 // 需要动态写入的 package.json 信息
 export const PKG_INFO = [
