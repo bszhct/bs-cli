@@ -6,3 +6,6 @@
 
 ## 0.1.0
 - 新增 template-vue-kit 和 template-vue-component
+
+## 0.1.1
+- 新增 template-vue-demo，用于博客的 demo 创建。

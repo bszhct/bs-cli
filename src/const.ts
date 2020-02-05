@@ -28,6 +28,10 @@ export const TEMPLATES = [
     name: '组件库(Vue)',
     value: 'github:bszhct/template-vue-kit#master',
   },
+  {
+    name: '脚手架(Vue + 示例专用)',
+    value: 'github:bszhct/template-vue-demo#master',
+  },
 ]
 // 需要动态写入的 package.json 信息
 export const PKG_INFO = [
