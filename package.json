@@ -37,6 +37,31 @@
     "pushstate-server": "3.1.0",
     "update-notifier": "3.0.1"
   },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "useJSXTextNode": true,
+      "project": "tsconfig.json"
+    },
+    "globals": {
+      "document": false,
+      "window": false
+    }
+  },
   "files": [
     "bin",
     "lib"
@@ -44,5 +69,12 @@
   "eslintIgnore": [
     "bin",
     "lib"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
 }

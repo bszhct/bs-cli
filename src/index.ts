@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 import * as program from 'caporal'
 import * as updateNotifier from 'update-notifier'
@@ -14,7 +15,7 @@ program.version(pkg.version)
 const notifier = updateNotifier({
   pkg,
   // 一周
-  updateCheckInterval: 1000 * 60 * 60 * 24 * 7,
+  updateCheckInterval: 1000 * 60 * 60 * 24 * 7
 })
 notifier.notify()
 

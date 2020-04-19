@@ -10,28 +10,28 @@ export const CACHE_ADDRESS = `${ROOT_DIT}/_templates`
 export const TEMPLATES = [
   {
     name: '组件(React)',
-    value: 'github:bszhct/template-component#master',
+    value: 'github:bszhct/template-component#master'
   },
   {
     name: '脚手架(React + Mobx)',
-    value: 'github:bszhct/template-react#master',
+    value: 'github:bszhct/template-react#master'
   },
   {
     name: '脚手架(Node Cli)',
-    value: 'github:bszhct/template-node#master',
+    value: 'github:bszhct/template-node#master'
   },
   {
     name: '组件(Vue)',
-    value: 'github:bszhct/template-vue-component#master',
+    value: 'github:bszhct/template-vue-component#master'
   },
   {
     name: '组件库(Vue)',
-    value: 'github:bszhct/template-vue-kit#master',
+    value: 'github:bszhct/template-vue-kit#master'
   },
   {
     name: '脚手架(Vue + 示例专用)',
-    value: 'github:bszhct/template-vue-demo#master',
-  },
+    value: 'github:bszhct/template-vue-demo#master'
+  }
 ]
 // 需要动态写入的 package.json 信息
 export const PKG_INFO = [
@@ -39,12 +39,12 @@ export const PKG_INFO = [
     type: 'input',
     name: 'version',
     message: 'version',
-    default: '0.0.1',
+    default: '0.0.1'
   },
   {
     type: 'input',
     name: 'description',
     message: 'description',
-    default: 'Here is the description of the project',
-  },
+    default: 'Here is the description of the project'
+  }
 ]

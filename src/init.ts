@@ -5,9 +5,8 @@ import * as fs from 'fs-extra'
 import * as inquirer from 'inquirer'
 import * as _ from 'lodash'
 import * as download from 'download-git-repo'
-import {checkDir, log, fileDisplay, defaultProjectTips} from './utils'
-import {TEMPLATES, PKG_INFO} from './const'
-
+import { checkDir, log, fileDisplay, defaultProjectTips } from './utils'
+import { TEMPLATES, PKG_INFO } from './const'
 
 export default () => {
   const root = process.cwd()
@@ -20,10 +19,10 @@ export default () => {
       type: 'list',
       name: 'type',
       message: '请选择工程类型:',
-      choices: TEMPLATES,
+      choices: TEMPLATES
     }).then(project => {
       // 变量替换
-      inquirer.prompt(PKG_INFO).then(pkg => {        
+      inquirer.prompt(PKG_INFO).then(pkg => {
         download(project.type, '.', (error: string) => {
           if (error) {
             log.error(error)
@@ -32,8 +31,8 @@ export default () => {
           // 替换 package.json 中 version, description 和 name 的值
           const pkgPath = `${root}/package.json`
           fs.writeFileSync(
-            pkgPath, 
-            JSON.stringify({...require(pkgPath), ...pkg, name: `@bszhct/${projectName}`}, null, 2)
+            pkgPath,
+            JSON.stringify({ ...require(pkgPath), ...pkg, name: `@bszhct/${projectName}` }, null, 2)
           )
           // 如果是 template-component 模板, 进行 component-name 的变量替换
           if (project.type.includes('template-component')) {
@@ -41,7 +40,7 @@ export default () => {
             const vars = {
               ComponentName: _.upperFirst(_.camelCase(projectName)),
               componentName: _.camelCase(projectName),
-              'component-name': projectName.toLocaleLowerCase(),
+              'component-name': projectName.toLocaleLowerCase()
             }
             fileDisplay(root, file => {
               // 过滤以点开头的隐藏文件和资源文件
@@ -67,7 +66,7 @@ export default () => {
               fs.writeFileSync(filePath, content)
             })
           }
-          
+
           log.ok('模板下载成功')
           defaultProjectTips()
         })
