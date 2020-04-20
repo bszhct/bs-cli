@@ -45,8 +45,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run eslint",
-      "git add"
+      "npm run es:fix"
     ]
   },
   "eslintConfig": {
