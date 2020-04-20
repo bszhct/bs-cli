@@ -8,7 +8,7 @@ import * as download from 'download-git-repo'
 import { checkDir, log, fileDisplay, defaultProjectTips } from './utils'
 import { TEMPLATES, PKG_INFO } from './const'
 
-export default () => {
+export default (): void => {
   const root = process.cwd()
   // 工程名称
   const projectName = root.split('/').pop()
@@ -28,13 +28,13 @@ export default () => {
             log.error(error)
             process.exit()
           }
-          // 替换 package.json 中 version, description 和 name 的值
+          // 替换 package.json 中 version、description 和 name 的值
           const pkgPath = `${root}/package.json`
           fs.writeFileSync(
             pkgPath,
             JSON.stringify({ ...require(pkgPath), ...pkg, name: `@bszhct/${projectName}` }, null, 2)
           )
-          // 如果是 template-component 模板, 进行 component-name 的变量替换
+          // 如果是 template-component 模板，进行 component-name 的变量替换
           if (project.type.includes('template-component')) {
             // 模板变量
             const vars = {

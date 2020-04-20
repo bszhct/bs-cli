@@ -9,27 +9,27 @@ export const CACHE_ADDRESS = `${ROOT_DIT}/_templates`
 // 模板列表
 export const TEMPLATES = [
   {
-    name: '组件(React)',
+    name: '组件（React）',
     value: 'github:bszhct/template-component#master'
   },
   {
-    name: '脚手架(React + Mobx)',
+    name: '脚手架（React + Mobx）',
     value: 'github:bszhct/template-react#master'
   },
   {
-    name: '脚手架(Node Cli)',
+    name: '脚手架（Node CLI）',
     value: 'github:bszhct/template-node#master'
   },
   {
-    name: '组件(Vue)',
+    name: '组件（Vue）',
     value: 'github:bszhct/template-vue-component#master'
   },
   {
-    name: '组件库(Vue)',
+    name: '组件库（Vue）',
     value: 'github:bszhct/template-vue-kit#master'
   },
   {
-    name: '脚手架(Vue + 示例专用)',
+    name: '脚手架（Vue + 示例专用）',
     value: 'github:bszhct/template-vue-demo#master'
   }
 ]

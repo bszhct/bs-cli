@@ -3,32 +3,31 @@ import * as path from 'path'
 import * as inquirer from 'inquirer'
 import * as chalk from 'chalk'
 
-
 const logTypes = {
   1: 'Usage',
   2: 'Configuration item',
-  3: 'Step',
+  3: 'Step'
 }
 
 // 统一的日志输出
 export const log = {
-  info: (type: number | string, text: string, br = false) => {
+  info: (type: number | string, text: string, br = false): void => {
     const key = typeof type === 'number' ? logTypes[type] : type
-    console.log(`\n${key}: ${chalk.cyan(text)}${br ? '\n' : ''}`)
+    console.log(`\n${key}：${chalk.cyan(text)}${br ? '\n' : ''}`)
   },
-  ok: (text: string, br = false) => {
-    console.log(`\n${chalk.green('Success: ')}${chalk.cyan(text)}${br ? '\n' : ''}`)
+  ok: (text: string, br = false): void => {
+    console.log(`\n${chalk.green('Success：')}${chalk.cyan(text)}${br ? '\n' : ''}`)
   },
-  error: (text: string, br = false) => {
-    console.log(`\n${chalk.red(`Error: ${text}`)}${br ? '\n' : ''}`)
+  error: (text: string, br = false): void => {
+    console.log(`\n${chalk.red(`Error：${text}`)}${br ? '\n' : ''}`)
   },
-  todo: (action: string, detail: string, br = false) => {
+  todo: (action: string, detail: string, br = false): void => {
     console.log(`\n${chalk.magenta(`${action}`)}\n  ${chalk.cyan(detail)}${br ? '\n' : ''}`)
-  },
+  }
 }
 
 // 默认的工程脚本提示
-export const defaultProjectTips = (filename?: string) => {
+export const defaultProjectTips = (filename?: string): void => {
   if (filename) {
     log.todo(`cd ${filename} && yarn install`, '进入目录并安装依赖')
   } else {
@@ -39,7 +38,7 @@ export const defaultProjectTips = (filename?: string) => {
 }
 
 // 判断目录是否为空
-export const checkDir = async (filePath: string, fn: () => void) => {
+export const checkDir = (filePath: string, fn: () => void): boolean => {
   let cover = false
   fs.readdir(filePath, (error, files) => {
     if (error && error.code !== 'ENOENT') {
@@ -49,10 +48,10 @@ export const checkDir = async (filePath: string, fn: () => void) => {
     // 确认是否清空
     if (!(!files || !files.length)) {
       inquirer.prompt({
-        message: '检测到该文件夹下有文件, 是否要清空?',
+        message: '检测到该文件夹下有文件，是否要清空？',
         type: 'confirm',
         name: 'status',
-        default: false,
+        default: false
       }).then(res => {
         cover = res.status
         if (cover) {
@@ -68,7 +67,7 @@ export const checkDir = async (filePath: string, fn: () => void) => {
 }
 
 // 递归获取所有文件并进行操作
-export const fileDisplay = (filePath: string, fn: (file: string) => void) => {
+export const fileDisplay = (filePath: string, fn: (file: string) => void): void => {
   // 根据文件路径读取文件, 返回文件列表
   fs.readdir(filePath, (error, files) => {
     if (error) {
