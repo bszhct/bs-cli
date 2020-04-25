@@ -26,7 +26,7 @@ export default (dir: string): void => {
       // 变量替换
       inquirer.prompt(PKG_INFO).then(pkg => {
         const spinner = ora('工程初始化中，请稍等').start()
-        download(project.type, projectName, (error: string) => {
+        download(project.type, projectDir, (error: string) => {
           if (error) {
             spinner.text = '模板下载失败'
             spinner.stop()

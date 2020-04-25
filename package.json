@@ -1,6 +1,6 @@
 {
   "name": "@bszhct/cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "骆驼的哈乐园",
   "scripts": {
     "dev": "tsc --watch",
