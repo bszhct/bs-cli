@@ -19,12 +19,10 @@
     "chalk": "4.0.0",
     "commander": "5.1.0",
     "download-git-repo": "3.0.2",
-    "ecstatic": "4.1.4",
     "fs-extra": "9.0.0",
     "http-server": "0.12.1",
     "inquirer": "7.1.0",
     "lodash": "4.17.15",
-    "minimist": "1.2.5",
     "ora": "4.0.4",
     "shelljs": "0.8.4",
     "update-notifier": "4.1.0"
