@@ -44,4 +44,4 @@ bs server -h
 
 ## 反馈
 
-[传送门](https://github.com/bszhct/cli/issues)
+[传送门](https://github.com/bszhct/bs-cli/issues)
