@@ -33,14 +33,15 @@ yarn global add @bszhct/cli
 启动一个本地的 Node 进程服务，可以设置文件目录和端口号。
 
 ```bash
-
-# bs server [dir] [port]
+# bs server [dir]
 bs server 
 bs server dist
-bs server dist,nodule_modules 9999
 
+# 更多
+bs server -h
 ```
 
 
 ## 反馈
+
 [传送门](https://github.com/bszhct/cli/issues)

@@ -2,47 +2,49 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as inquirer from 'inquirer'
 import * as chalk from 'chalk'
-
-const logTypes = {
-  1: 'Usage',
-  2: 'Configuration item',
-  3: 'Step'
-}
+import * as ora from 'ora'
 
 // 统一的日志输出
 export const log = {
-  info: (type: number | string, text: string, br = false): void => {
-    const key = typeof type === 'number' ? logTypes[type] : type
-    console.log(`\n${key}：${chalk.cyan(text)}${br ? '\n' : ''}`)
+  info: (text: string, br = true): void => {
+    console.log()
+    console.log(chalk.blue('info：') + text)
+    if (br) console.log()
   },
-  ok: (text: string, br = false): void => {
-    console.log(`\n${chalk.green('Success：')}${chalk.cyan(text)}${br ? '\n' : ''}`)
+  ok: (text: string, br = true): void => {
+    console.log()
+    console.log(chalk.green('Success：') + text)
+    if (br) console.log()
   },
-  error: (text: string, br = false): void => {
-    console.log(`\n${chalk.red(`Error：${text}`)}${br ? '\n' : ''}`)
+  error: (text: string, key = true, br = true): void => {
+    console.log()
+    console.log(chalk.red(key ? `Error：${text}` : text))
+    if (br) console.log()
   },
-  todo: (action: string, detail: string, br = false): void => {
-    console.log(`\n${chalk.magenta(`${action}`)}\n  ${chalk.cyan(detail)}${br ? '\n' : ''}`)
+  cmd: (text: string): void => {
+    console.log(`${chalk.gray('$')} ${chalk.cyan(text)}`)
   }
 }
 
 // 默认的工程脚本提示
 export const defaultProjectTips = (filename?: string): void => {
+  console.log()
   if (filename) {
-    log.todo(`cd ${filename} && yarn install`, '进入目录并安装依赖')
+    log.cmd(`cd ${filename} && yarn install`)
   } else {
-    log.todo('yarn install', '安装依赖')
+    log.cmd('yarn install')
   }
-  log.todo('yarn run dev', '启动开发服务')
-  log.todo('yarn run build', '启动脚本构建服务', true)
+  log.cmd('yarn run dev')
+  log.cmd('yarn run build')
+  console.log()
 }
 
 // 判断目录是否为空
 export const checkDir = (filePath: string, fn: () => void): boolean => {
   let cover = false
-  fs.readdir(filePath, (error, files) => {
+  fs.readdir(filePath, (error: NodeJS.ErrnoException, files: string[]) => {
     if (error && error.code !== 'ENOENT') {
-      log.error('无法读取文件', true)
+      log.error(error.toString(), true)
       process.exit()
     }
     // 确认是否清空
@@ -55,7 +57,14 @@ export const checkDir = (filePath: string, fn: () => void): boolean => {
       }).then(res => {
         cover = res.status
         if (cover) {
-          fs.emptyDirSync(process.cwd())
+          const spinner = ora(`正在删除 ${chalk.cyan(filePath.split('/').pop())} 中，请稍等`).start()
+          try {
+            fs.emptyDirSync(filePath)
+          } catch (e) {
+            log.error(e)
+            process.exit()
+          }
+          spinner.stop()
         }
         fn()
       })
@@ -68,20 +77,20 @@ export const checkDir = (filePath: string, fn: () => void): boolean => {
 
 // 递归获取所有文件并进行操作
 export const fileDisplay = (filePath: string, fn: (file: string) => void): void => {
-  // 根据文件路径读取文件, 返回文件列表
-  fs.readdir(filePath, (error, files) => {
+  // 根据文件路径读取文件，返回文件列表
+  fs.readdir(filePath, (error: NodeJS.ErrnoException, files: string[]) => {
     if (error) {
-      log.error('文件读取错误')
+      log.error(error.toString(), false)
       process.exit()
     } else {
       // 遍历读取到的文件列表
-      files.forEach(filename => {
+      files.forEach((filename: string) => {
         // 获取当前文件的绝对路径
         const file = path.join(filePath, filename)
         // 根据文件路径获取文件信息
-        fs.stat(file, (err, stats) => {
+        fs.stat(file, (err: NodeJS.ErrnoException, stats: fs.Stats) => {
           if (err) {
-            log.error('获取文件 stats 失败')
+            log.error(err.toString(), false)
             process.exit()
           } else {
             const isFile = stats.isFile()

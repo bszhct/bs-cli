@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-import * as program from 'caporal'
+import * as program from 'commander'
 import * as updateNotifier from 'update-notifier'
 
 import init from './init'
@@ -19,16 +19,18 @@ const notifier = updateNotifier({
 })
 notifier.notify()
 
-// 初始化工程
 program
-  .command('init', '初始化工程')
+  .command('init [dir]')
+  .description('初始化工程')
   .action(init)
 
-// 启动一个本地服务
 program
-  .command('server', '启动一个本地服务')
-  .argument('[dir]', '文件目录', program.STRING, 'dist')
-  .argument('[port]', '端口号', program.INT, 9000)
+  .command('server [dir]')
+  .description('启动一个本地服务')
+  .option('-a, --address <address>', '访问地址')
+  .option('-p, --port <port>', '服务端口号')
+  .option('-P, --proxy <proxy>', '代理服务器的地址')
+  .option('-o, --open <open>', '启动服务后自动打开窗口')
   .action(server)
 
 program.parse(process.argv)
