@@ -21,16 +21,12 @@ export const TEMPLATES = [
     value: 'github:bszhct/template-node#master'
   },
   {
-    name: '组件（Vue）',
+    name: '组件/示例专用（Vue）',
     value: 'github:bszhct/template-vue-component#master'
   },
   {
     name: '组件库（Vue）',
     value: 'github:bszhct/template-vue-kit#master'
-  },
-  {
-    name: '脚手架（Vue + 示例专用）',
-    value: 'github:bszhct/template-vue-demo#master'
   }
 ]
 // 需要动态写入的 package.json 信息
@@ -38,13 +34,13 @@ export const PKG_INFO = [
   {
     type: 'input',
     name: 'version',
-    message: 'version',
-    default: '0.0.1'
+    message: '请输入项目版本号',
+    default: '1.0.0'
   },
   {
     type: 'input',
     name: 'description',
-    message: 'description',
-    default: 'Here is the description of the project'
+    message: '请填写项目描述',
+    default: '项目描述'
   }
 ]
